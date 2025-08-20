@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    
+    <display-name>Pahana Edu Bookstore</display-name>
+    
+    <!-- Session Configuration -->
+    <session-config>
+        <session-timeout>20</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>false</secure>
+        </cookie-config>
+    </session-config>
+    
+    <!-- Welcome Files -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <!-- Authentication Filter -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.pahanaedu.bookstore.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/app/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- Auth Servlet -->
+    <servlet>
+        <servlet-name>AuthServlet</servlet-name>
+        <servlet-class>com.pahanaedu.bookstore.controller.AuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Customer Servlet -->
+    <servlet>
+        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-class>com.pahanaedu.bookstore.controller.CustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/app/customers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/app/customers/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/app/customers/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/api/customers</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Item Servlet -->
+    <servlet>
+        <servlet-name>ItemServlet</servlet-name>
+        <servlet-class>com.pahanaedu.bookstore.controller.ItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemServlet</servlet-name>
+        <url-pattern>/app/items</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItemServlet</servlet-name>
+        <url-pattern>/app/items/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItemServlet</servlet-name>
+        <url-pattern>/api/items</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Billing Servlet -->
+    <servlet>
+        <servlet-name>BillingServlet</servlet-name>
+        <servlet-class>com.pahanaedu.bookstore.controller.BillingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BillingServlet</servlet-name>
+        <url-pattern>/app/billing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillingServlet</servlet-name>
+        <url-pattern>/api/billing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillingServlet</servlet-name>
+        <url-pattern>/app/bill/view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillingServlet</servlet-name>
+        <url-pattern>/app/bill/view-simple</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Account Servlet -->
+    <servlet>
+        <servlet-name>AccountServlet</servlet-name>
+        <servlet-class>com.pahanaedu.bookstore.controller.AccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccountServlet</servlet-name>
+        <url-pattern>/app/account</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Dashboard Servlet -->
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>com.pahanaedu.bookstore.controller.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/app/dashboard</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Help Servlet -->
+    <servlet>
+        <servlet-name>HelpServlet</servlet-name>
+        <servlet-class>com.pahanaedu.bookstore.controller.HelpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelpServlet</servlet-name>
+        <url-pattern>/app/help</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Quick Search Servlet -->
+    <servlet>
+        <servlet-name>QuickSearchServlet</servlet-name>
+        <servlet-class>com.pahanaedu.bookstore.controller.QuickSearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QuickSearchServlet</servlet-name>
+        <url-pattern>/assets/data</url-pattern>
+    </servlet-mapping>
+    
+</web-app>

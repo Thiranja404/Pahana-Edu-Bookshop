@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Bill Details API</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #result { margin-top: 20px; padding: 15px; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; }
+        pre { background: white; padding: 10px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Test Bill Details API</h1>
+    
+    <button onclick="testBillDetails()">Test Bill Details for BILL-000014</button>
+    <button onclick="testCustomerSearch()">Test Customer Search</button>
+    <button onclick="testItemSearch()">Test Item Search</button>
+    
+    <div id="result">Click a button to test the API</div>
+
+    <script>
+        function testBillDetails() {
+            const billNo = 'BILL-000014';
+            const url = `/pahana-edu-bookstore/assets/data?t=bill&q=${encodeURIComponent(billNo)}`;
+            
+            console.log('Testing Bill Details URL:', url);
+            document.getElementById('result').innerHTML = 'Loading bill details...';
+            
+            fetch(url)
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', response.headers);
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('Raw response:', data);
+                    document.getElementById('result').innerHTML = `
+                        <h3>Bill Details Response:</h3>
+                        <pre>${data}</pre>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerHTML = `<strong>Error:</strong> ${error.message}`;
+                });
+        }
+        
+        function testCustomerSearch() {
+            const query = 'John';
+            const url = `/pahana-edu-bookstore/assets/data?t=c&q=${encodeURIComponent(query)}`;
+            
+            console.log('Testing Customer Search URL:', url);
+            document.getElementById('result').innerHTML = 'Loading customer search...';
+            
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Customer search response:', data);
+                    document.getElementById('result').innerHTML = `
+                        <h3>Customer Search Response:</h3>
+                        <pre>${data}</pre>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerHTML = `<strong>Error:</strong> ${error.message}`;
+                });
+        }
+        
+        function testItemSearch() {
+            const query = 'book';
+            const url = `/pahana-edu-bookstore/assets/data?t=i&q=${encodeURIComponent(query)}`;
+            
+            console.log('Testing Item Search URL:', url);
+            document.getElementById('result').innerHTML = 'Loading item search...';
+            
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Item search response:', data);
+                    document.getElementById('result').innerHTML = `
+                        <h3>Item Search Response:</h3>
+                        <pre>${data}</pre>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerHTML = `<strong>Error:</strong> ${error.message}`;
+                });
+        }
+    </script>
+</body>
+</html>
